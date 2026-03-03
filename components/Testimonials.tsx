@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const guestsInformation = [
   {
@@ -69,46 +71,80 @@ const guestsInformation = [
   }
 ];
 
-const TestimonialsCard = (name:string, company:string, information:string) => (
-  <div className="rounded-3xl border duration-300 hover:shadow-md p-6">
-    <div className="flex flex-row">
-      <div className="p-2 w-12 h-12 mr-4 bg-primary rounded-full text-white flex items-center justify-center text-xl font-bold">
-     {name[0]}
-   </div>
-      <div className="flex flex-col gap-0">
-        <h1 className="text-2xl font-medium">
-          {name}
-        </h1>
-        <h3 className="text-primary font-bold text-sm">
-          {company}
-        </h3>
+const TestimonialsCard = (name: string, company: string, topic: string, information: string, index: number) => {
+  // Generate consistent colors for avatars
+  const colors = [
+    'bg-blue-500',
+    'bg-purple-500',
+    'bg-green-500',
+    'bg-orange-500',
+    'bg-pink-500',
+    'bg-indigo-500',
+  ];
+  const colorClass = colors[index % colors.length];
+
+  return (
+    <div className="rounded-2xl border duration-300 hover:shadow-lg hover:-translate-y-1 transition-all p-6 bg-background/50 backdrop-blur">
+      <div className="flex flex-row items-start mb-4">
+        <div className={`p-3 w-14 h-14 min-w-[3.5rem] mr-4 ${colorClass} rounded-full text-white flex items-center justify-center text-xl font-bold shadow-md`}>
+          {name[0]}
+        </div>
+        <div className="flex flex-col gap-0">
+          <h1 className="text-xl font-bold">
+            {name}
+          </h1>
+          <h3 className="text-primary font-semibold text-sm">
+            {company}
+          </h3>
+          <p className="text-xs text-muted-foreground mt-1 font-medium">
+            Topic: {topic}
+          </p>
+        </div>
       </div>
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {information}
+      </p>
     </div>
-    <p className="mt-2 pb-1">
-      {information}
-    </p>
-  </div>
-);
+  );
+};
 
 const Testimonials = () => {
+  // Show only first 6 guests on home page
+  const featuredGuests = guestsInformation.slice(0, 6);
+
   return (
-    <section className="container my-10">
-      <div className="flex flex-col gap-6 mb-10">
-        <h1 className="text-5xl font-medium">
-          Some of our <span className="text-primary font-bold">guests</span> 
-        </h1>
-        <p className="">
-          Here is a short information about some of our guests
+    <section className="container py-20">
+      <div className="flex flex-col gap-3 mb-10 text-center max-w-3xl mx-auto">
+        <h2 className="text-4xl font-bold">
+          Featured <span className="text-primary">Guests</span>
+        </h2>
+        <p className="text-lg text-muted-foreground">
+          Industry leaders, innovators, and experts sharing their insights on technology and innovation
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 max-w-6xl mx-auto">
         {
-          guestsInformation.map((guest) => (
-            TestimonialsCard(guest.name, guest.company, guest.bio)
+          featuredGuests.map((guest, index) => (
+            <React.Fragment key={guest.name}>
+              {TestimonialsCard(guest.name, guest.company, guest.topic, guest.bio, index)}
+            </React.Fragment>
           ))
         }
       </div>
+
+      {/* View All Link */}
+      {guestsInformation.length > 6 && (
+        <div className="text-center mt-10">
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 text-primary hover:underline font-semibold group"
+          >
+            View All Guests
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      )}
     </section>
   );
 };

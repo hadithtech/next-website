@@ -7,10 +7,10 @@ const Episodes = () => {
   const episodes = getRecentEpisodes('en', 4);
 
   return (
-    <div className="container relative">
-      <div className="text-center flex flex-col items-center justify-center gap-2">
-        <h1 className="text-5xl font-extrabold">Latest Podcast Episodes</h1>
-        <p className="lg:text-lg opacity-50 max-w-2xl">
+    <div className="container py-20 bg-secondary/10">
+      <div className="text-center flex flex-col items-center justify-center gap-3 mb-12">
+        <h2 className="text-4xl font-bold">Latest Podcast Episodes</h2>
+        <p className="text-lg text-muted-foreground max-w-2xl">
           Discover our latest conversations with technology leaders and innovators
         </p>
       </div>
@@ -18,7 +18,7 @@ const Episodes = () => {
         {episodes.map((episode) => (
           <Link
             href={`/podcasts/${episode.slug}`}
-            className="border p-5 rounded-3xl hover:shadow-lg transition-shadow group"
+            className="border p-5 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-1 group bg-background"
             key={episode.slug}
           >
             <div className="flex mb-3 items-center justify-between gap-2">
@@ -33,12 +33,12 @@ const Episodes = () => {
             </div>
             {/* embed YouTube */}
             <iframe
-              className="w-full h-56 object-cover rounded-2xl bg-primary pointer-events-none"
+              className="w-full h-56 object-cover rounded-xl bg-primary pointer-events-none"
               src={episode.frontmatter.embedUrl}
               title={episode.frontmatter.title}
               allowFullScreen
             />
-            <h3 className="mt-3 font-semibold group-hover:text-primary transition-colors line-clamp-2">
+            <h3 className="mt-4 font-bold text-lg group-hover:text-primary transition-colors line-clamp-2">
               {episode.frontmatter.title}
             </h3>
             <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
@@ -47,9 +47,9 @@ const Episodes = () => {
           </Link>
         ))}
       </div>
-      <div className="bg-gradient-to-t from-background to-transparent absolute bottom-8 left-1/2 -translate-x-1/2 pt-16 w-full">
-        <Link href="/podcasts" className="flex items-center justify-center group gap-1 text-primary underline relative top-6">
-          Explore All Podcasts <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+      <div className="text-center mt-12">
+        <Link href="/podcasts" className="inline-flex items-center justify-center group gap-2 text-primary underline font-semibold hover:gap-3 transition-all">
+          Explore All Podcasts <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
     </div>

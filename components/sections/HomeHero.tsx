@@ -3,14 +3,15 @@ import React from 'react'
 import TextTransition, { presets } from 'react-text-transition';
 import "./sections.css"
 import Image from 'next/image';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 
-let categories = ["Technology", "Programming", "Coding"];
+let categories = ["Technology", "AI", "Open Source"];
 
 const Podcast__Card = ({ className, children }: { className?: string, children: React.ReactNode }) => {
   return (
-    <div className={cn("bg-background/80 backdrop-blur p-2 rounded-lg border shadow gap-2", className)}>
+    <div className={cn("bg-background/80 backdrop-blur p-4 rounded-2xl border shadow gap-2", className)}>
       {children}
     </div>
   )
@@ -28,64 +29,69 @@ const HomeHero = () => {
   }, []);
 
   return (
-    <section className="container">
+    <section className="container py-12">
       <h1 className="
-        lg:text-7xl  lg:max-w-5xl lg:leading-[84px]
-        md:text-5xl  md:max-w-[700px] md:leading-[60px]
-        sm:text-[38px]  sm:max-w-[560px] sm:leading-[48px]
-        xs:text-2xl xs:max-w-[380px] xs:leading-[36px]
-        text-lg  w-full leading-[30px]
-        pb-10 pt-0 font-semibold mx-auto text-center
+        lg:text-6xl lg:max-w-4xl lg:leading-[72px]
+        md:text-5xl md:max-w-[700px] md:leading-[60px]
+        sm:text-4xl sm:max-w-[560px] sm:leading-[48px]
+        text-3xl max-w-full leading-[40px]
+        pb-6 font-bold mx-auto text-center
       ">
-        Podcasts To Discuss All Things
+        Tech Conversations About
         <span className="
-          font-bold lg:text-5xl md:text-4xl sm:text-3xl xs:text-xl text-[12px] border-primary border-dotted sm:border-4 border-2 px-2 sm:px-4 mx-2
-          rounded-full uppercase bg-primary/10 pt-1 pb-[2px] lg:px-4 lg:py-1 relative !overflow-hidden
+          font-bold lg:text-5xl md:text-4xl sm:text-3xl text-2xl border-primary border-dotted sm:border-4 border-2 px-3 sm:px-5 mx-2
+          rounded-full uppercase bg-primary/10 pt-1 pb-[2px] lg:px-5 lg:py-1 relative inline-block
         ">
           <TextTransition springConfig={presets.gentle} className='!inline-flex text-primary'>{categories[index % categories.length]}</TextTransition>
         </span>
-        Related
       </h1>
+      <p className="text-center text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+        Join technology leaders and innovators discussing the future of tech, from machine learning to open source
+      </p>
+      <div className="flex gap-4 justify-center mb-12">
+        <Link href="/podcasts" className={cn(buttonVariants({ size: "lg" }))}>
+          Browse Episodes
+        </Link>
+        <Link href="/subscribe" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+          Subscribe Now
+        </Link>
+      </div>
       <div className="flex md:flex-row flex-col-reverse gap-4 relative items-center">
-        <div className="flex-1 flex flex-col sm:px-10 py-10 gap-8 md:w-auto max-w-[480px]">
-          <div className="flex flex-col gap-0">
-            <h1 className="font-black text-4xl">24+</h1>
-            <h2 className="font-semibold text-2xl">Arabic Episodes</h2>
-            <p className="font-normal text-muted-foreground md:max-w-[400px]">
-              Featuring over 24 episodes in Arabic, generously supported by GitHub Education, this podcast is dedicated to discussions on open-source, technology, and AI. With a focus on the MENA region, it aims to empower new generations to actively contribute to the world of open-source and technology.
+        <div className="flex-1 flex flex-col sm:px-10 py-10 gap-6 md:w-auto max-w-[480px]">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-baseline gap-2">
+              <h1 className="font-bold text-5xl text-primary">24+</h1>
+              <h2 className="font-semibold text-xl">Arabic Episodes</h2>
+            </div>
+            <p className="font-normal text-muted-foreground">
+              Empowering the MENA region with discussions on open-source, technology, and AI.
             </p>
           </div>
-          <div className="flex flex-col gap-0">
-            <h1 className="font-black text-4xl">12+</h1>
-            <h2 className="font-semibold text-2xl">English Episodes</h2>
-            <p className="font-normal text-muted-foreground md:max-w-[400px]">
-              Engaging discussions with tech experts such covering diverse topics including open-source contributions, cybersecurity, machine learning, and the intersection of UNICEF with the tech industry. </p>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-baseline gap-2">
+              <h1 className="font-bold text-5xl text-primary">12+</h1>
+              <h2 className="font-semibold text-xl">English Episodes</h2>
+            </div>
+            <p className="font-normal text-muted-foreground">
+              Expert conversations covering cybersecurity, machine learning, and tech innovation.
+            </p>
           </div>
         </div>
         <div className="flex-1 lg:mt-auto xl:border-b-2 border-primary relative">
           <Image width={800} height={800} alt='image' src={"/Abdulrahman.png"} className='w-auto xl:h-auto lg:h-[500px] md:max-h-none max-h-[400px] mx-auto' />
           <Podcast__Card className='relative -top-5 md:hidden flex w-[100%] bg-background/90 max-w-[400px]' >
-            <div className="flex flex-col gap-0 justify-center">
-              <p className='opacity-50 text-primary sm:text-xs text-[10px] sm:-mb-1 font-medium'>software engineer</p>
-              <h1 className='font-bold sm:text-lg text-[15px]'>Abdurrahman Rajab</h1>
-              <p className='opacity-50 sm:text-xs text-[8px]'>Software engineer worked with startups and scale-up, host of Hadith Tech, invited to speak on TV (discussed AI and security) , invited to GitHub Universe Conference, and hosted 20+ workshops related to open source, technology, and AI.</p>
+            <div className="flex flex-col gap-1 justify-center">
+              <p className='text-primary sm:text-xs text-[10px] font-semibold uppercase tracking-wide'>Host</p>
+              <h1 className='font-bold sm:text-lg text-base'>Abdurrahman Rajab</h1>
+              <p className='text-muted-foreground sm:text-sm text-xs'>
+                Tech leader, open source advocate, and speaker at GitHub Universe
+              </p>
             </div>
           </Podcast__Card>
         </div>
         <div className="xl:block hidden lg:mt-10 w-[350px]">
-          <Image width={800} height={800} alt='image' src={"/logo.png"} className='w-2/3 h-auto mx-auto' />
+          <Image width={800} height={800} alt='Hadith Tech Logo' src={"/logo.png"} className='w-2/3 h-auto mx-auto' />
         </div>
-        <Podcast__Card className='absolute bottom-5 left-1/2 xl:ml-20 lg:-ml-20 hidden md:flex' >
-          <Image width={800} height={800} alt='image' src={"/lo"} className='h-20 w-20 bg-primary object-cover rounded-lg' />
-          <div className="flex flex-col justify-between items-start pr-6">
-            <div className="flex flex-col gap-0 justify-center">
-              <p className='opacity-50 text-primary text-xs -mb-1 font-medium'>Economics Concepts</p>
-              <h1 className='font-bold text-lg'>How to earn money</h1>
-              <p className='opacity-50 text-xs'>In this podcast you will learn <br /> how to earn money....</p>
-            </div>
-            {/* <h3 className='font-medium text-xs'>With: <span className='text-primary'>Abdulrahman Nahhas</span></h3> */}
-          </div>
-        </Podcast__Card>
       </div>
     </section>
   )
