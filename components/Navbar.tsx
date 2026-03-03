@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertOctagon, Menu } from "lucide-react";
+import { Menu, Globe } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { buttonVariants } from "./ui/button";
@@ -14,16 +14,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+  const isArabic = pathname?.startsWith('/ar');
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const navbar = document.querySelector("nav.navbar");
     const body = document.querySelector("body");
-    console.log(latest);
 
     if (latest >= 100) {
       navbar?.classList.add("navbar-active");
@@ -34,104 +35,126 @@ const Navbar = () => {
     }
   });
 
+  const localePrefix = isArabic ? '/ar' : '';
+  const toggleLang = isArabic ? pathname?.replace('/ar', '') || '/' : `/ar${pathname}`;
+
   return (
     <nav className="container py-6 flex items-center justify-between rounded-b-3xl backdrop-blur z-[99999]">
       <Link
-        href="/"
+        href={localePrefix + "/"}
         className="flex items-center justify-center font-semibold text-lg"
       >
-        {/* <Image src={"/logo.png"} alt="logo" width={500} height={600} className="duration-200 h-8 w-auto" /> */}
         Hadith<span className="text-primary">Tech</span>
       </Link>
       <div className="hidden md:flex gap-1 items-center justify-center">
-        {/* <Link
-          href="/"
+        <Link
+          href={localePrefix + "/"}
           className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-xl"
         >
-          Home
-        </Link> */}
-        {/* <Link
-          href="/about"
+          {isArabic ? 'الرئيسية' : 'Home'}
+        </Link>
+        <Link
+          href={localePrefix + "/about"}
           className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-xl"
         >
-          About
-        </Link> */}
-        {/* <Link
-          href="/episodes"
+          {isArabic ? 'من نحن' : 'About'}
+        </Link>
+        <Link
+          href={localePrefix + "/podcasts"}
           className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-xl"
         >
-          Episodes
-        </Link> */}
-        {/* <Link
-          href="/contact"
+          {isArabic ? 'البودكاست' : 'Podcasts'}
+        </Link>
+        <Link
+          href={localePrefix + "/contact"}
           className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-xl"
         >
-          Contact
-        </Link> */}
+          {isArabic ? 'اتصل بنا' : 'Contact'}
+        </Link>
       </div>
-      <Link
-        className={cn(buttonVariants(), "hidden md:flex")}
-        href="/subscribe"
-      >
-        Subscribe
-      </Link>
+      <div className="hidden md:flex gap-2 items-center">
+        <Link
+          href={toggleLang}
+          className="opacity-75 hover:opacity-100 hover:bg-accent p-2 rounded-full duration-500"
+          title={isArabic ? 'Switch to English' : 'التبديل إلى العربية'}
+        >
+          <Globe className="w-5 h-5" />
+        </Link>
+        <Link
+          className={cn(buttonVariants())}
+          href={localePrefix + "/subscribe"}
+        >
+          {isArabic ? 'اشترك' : 'Subscribe'}
+        </Link>
+      </div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="bg-primary p-2 rounded-3xl text-background md:hidden hover:rounded-2xl duration-300">
           <Menu />
         </DialogTrigger>
         <DialogContent className="max-w-[250px] rounded-3xl shadow-none">
           <DialogHeader>
-            <DialogTitle className="text-start">Pages & Links</DialogTitle>
+            <DialogTitle className="text-start">{isArabic ? 'الصفحات والروابط' : 'Pages & Links'}</DialogTitle>
             <DialogDescription className="pt-2 flex flex-col gap-1">
               <Link
-                href="/"
+                href={localePrefix + "/"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                Home
+                {isArabic ? 'الرئيسية' : 'Home'}
               </Link>
               <Link
-                href="/about"
+                href={localePrefix + "/about"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                About
+                {isArabic ? 'من نحن' : 'About'}
               </Link>
               <Link
-                href="/episodes"
+                href={localePrefix + "/podcasts"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                Episodes
+                {isArabic ? 'البودكاست' : 'Podcasts'}
               </Link>
               <Link
-                href="/contact"
+                href={localePrefix + "/contact"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                Contact
+                {isArabic ? 'اتصل بنا' : 'Contact'}
               </Link>
               <Link
-                href="/subscribe"
+                href={toggleLang}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  buttonVariants({ variant: "ghost" }),
+                  "w-full flex items-center justify-center gap-2"
+                )}
+              >
+                <Globe className="w-4 h-4" />
+                {isArabic ? 'English' : 'العربية'}
+              </Link>
+              <Link
+                href={localePrefix + "/subscribe"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "default" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                Subscribe
+                {isArabic ? 'اشترك' : 'Subscribe'}
               </Link>
             </DialogDescription>
           </DialogHeader>

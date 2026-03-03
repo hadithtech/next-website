@@ -48,17 +48,10 @@ const Footer = () => {
             className="duration-200 h-44 mb-4 w-auto block md:hidden"
           />
         <h1 className="font-semibold hover:bg-accent py-2 px-4 rounded-3xl cursor-pointer hidden items-center justify-center gap-1 md:flex">
-          {/* <Image
-            src={"/logo.png"}
-            alt="logo"
-            width={500}
-            height={600}
-            className="duration-200 h-10 w-auto"
-          /> */}
           Hadith Tech
         </h1>
 
-        {/* <div className="flex flex-wrap flex-row gap-1 items-center justify-center">
+        <div className="flex flex-wrap flex-row gap-1 items-center justify-center">
           <Link
             href="/"
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
@@ -72,10 +65,10 @@ const Footer = () => {
             About
           </Link>
           <Link
-            href="/episodes"
+            href="/podcasts"
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
           >
-            Episodes
+            Podcasts
           </Link>
           <Link
             href="/contact"
@@ -83,7 +76,7 @@ const Footer = () => {
           >
             Contact
           </Link>
-        </div> */}
+        </div>
       </footer>
     </>
   );

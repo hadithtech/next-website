@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'var(--font-cairo)', 'system-ui', 'sans-serif'],
+        cairo: ['var(--font-cairo)', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

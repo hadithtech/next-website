@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        unoptimized: true
-    },
-    experimental: {
-        useDeploymentId: true,
-        // Optionally, use with Server Actions
-        useDeploymentIdServerActions: true,
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'i.ytimg.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.youtube.com',
+            },
+        ],
     },
 };
 

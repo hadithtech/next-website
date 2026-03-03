@@ -75,9 +75,9 @@ const HomeHero = () => {
         <div className="xl:block hidden lg:mt-10 w-[350px]">
           <Image width={800} height={800} alt='image' src={"/logo.png"} className='w-2/3 h-auto mx-auto'/>
         </div>
-        <Podcast__Card className='hidden absolute bottom-5 left-1/2 xl:ml-20 lg:-ml-20 md:flex hidden' >
-          <Image width={800} height={800} alt='image' src={"/lo"} className='h-20 w-20 bg-primary object-cover rounded-lg hidden'/>
-          <div className="flex flex-col justify-between items-start pr-6 hidden">
+        <Podcast__Card className='absolute bottom-5 left-1/2 xl:ml-20 lg:-ml-20 hidden md:flex' >
+          <Image width={800} height={800} alt='image' src={"/lo"} className='h-20 w-20 bg-primary object-cover rounded-lg'/>
+          <div className="flex flex-col justify-between items-start pr-6">
             <div className="flex flex-col gap-0 justify-center">
               <p className='opacity-50 text-primary text-xs -mb-1 font-medium'>Economics Concepts</p>
               <h1 className='font-bold text-lg'>How to earn money</h1>

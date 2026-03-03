@@ -22,19 +22,19 @@ const AboutHero = () => {
             <h1 className="font-bold text-4xl">
             60+
             </h1>
-            <span className=" text-2xl"> Espisodes</span>
+            <span className=" text-2xl">Episodes</span>
           </div>
           <div className="bg-background/50 backdrop-blur-md py-4 px-6 rounded-xl">
             <h1 className="font-bold text-4xl">
-            60+
+            50+
             </h1>
-            <span className=" text-2xl"> Espisodes</span>
+            <span className=" text-2xl">Guests</span>
           </div>
           <div className="bg-background/50 backdrop-blur-md py-4 px-6 rounded-xl">
             <h1 className="font-bold text-4xl">
-            60+
+            10K+
             </h1>
-            <span className=" text-2xl"> Espisodes</span>
+            <span className=" text-2xl">Listeners</span>
           </div>
         </div>
       </div>

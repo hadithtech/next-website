@@ -1,5 +1,15 @@
 import Link from 'next/link'
 import React from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Subscribe | Hadith Tech',
+  description: 'Subscribe to Hadith Tech podcast on Spotify and YouTube. Available in both English and Arabic. Stay updated with the latest tech conversations.',
+  openGraph: {
+    title: 'Subscribe | Hadith Tech',
+    description: 'Subscribe on Spotify and YouTube in English or Arabic.',
+  },
+};
 
 const page = () => {
   return (
