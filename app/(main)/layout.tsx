@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import { Inter, Cairo } from "next/font/google";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter',
   display: 'swap',
 });
 
-const cairo = Cairo({ 
+const cairo = Cairo({
   subsets: ["arabic", "latin"],
   variable: '--font-cairo',
   display: 'swap',

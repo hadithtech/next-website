@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 
 let categories = ["Technology", "Programming", "Coding"];
 
-const Podcast__Card = ({className, children}: {className?: string, children: React.ReactNode}) => {
+const Podcast__Card = ({ className, children }: { className?: string, children: React.ReactNode }) => {
   return (
     <div className={cn("bg-background/80 backdrop-blur p-2 rounded-lg border shadow gap-2", className)}>
       {children}
@@ -52,18 +52,18 @@ const HomeHero = () => {
             <h1 className="font-black text-4xl">24+</h1>
             <h2 className="font-semibold text-2xl">Arabic Episodes</h2>
             <p className="font-normal text-muted-foreground md:max-w-[400px]">
-            Featuring over 24 episodes in Arabic, generously supported by GitHub Education, this podcast is dedicated to discussions on open-source, technology, and AI. With a focus on the MENA region, it aims to empower new generations to actively contribute to the world of open-source and technology.
-               </p>
+              Featuring over 24 episodes in Arabic, generously supported by GitHub Education, this podcast is dedicated to discussions on open-source, technology, and AI. With a focus on the MENA region, it aims to empower new generations to actively contribute to the world of open-source and technology.
+            </p>
           </div>
           <div className="flex flex-col gap-0">
             <h1 className="font-black text-4xl">12+</h1>
             <h2 className="font-semibold text-2xl">English Episodes</h2>
             <p className="font-normal text-muted-foreground md:max-w-[400px]">
-            Engaging discussions with tech experts such covering diverse topics including open-source contributions, cybersecurity, machine learning, and the intersection of UNICEF with the tech industry. </p>
+              Engaging discussions with tech experts such covering diverse topics including open-source contributions, cybersecurity, machine learning, and the intersection of UNICEF with the tech industry. </p>
           </div>
         </div>
         <div className="flex-1 lg:mt-auto xl:border-b-2 border-primary relative">
-          <Image width={800} height={800} alt='image' src={"/Abdulrahman.png"} className='w-auto xl:h-auto lg:h-[500px] md:max-h-none max-h-[400px] mx-auto'/>
+          <Image width={800} height={800} alt='image' src={"/Abdulrahman.png"} className='w-auto xl:h-auto lg:h-[500px] md:max-h-none max-h-[400px] mx-auto' />
           <Podcast__Card className='relative -top-5 md:hidden flex w-[100%] bg-background/90 max-w-[400px]' >
             <div className="flex flex-col gap-0 justify-center">
               <p className='opacity-50 text-primary sm:text-xs text-[10px] sm:-mb-1 font-medium'>software engineer</p>
@@ -73,15 +73,15 @@ const HomeHero = () => {
           </Podcast__Card>
         </div>
         <div className="xl:block hidden lg:mt-10 w-[350px]">
-          <Image width={800} height={800} alt='image' src={"/logo.png"} className='w-2/3 h-auto mx-auto'/>
+          <Image width={800} height={800} alt='image' src={"/logo.png"} className='w-2/3 h-auto mx-auto' />
         </div>
         <Podcast__Card className='absolute bottom-5 left-1/2 xl:ml-20 lg:-ml-20 hidden md:flex' >
-          <Image width={800} height={800} alt='image' src={"/lo"} className='h-20 w-20 bg-primary object-cover rounded-lg'/>
+          <Image width={800} height={800} alt='image' src={"/lo"} className='h-20 w-20 bg-primary object-cover rounded-lg' />
           <div className="flex flex-col justify-between items-start pr-6">
             <div className="flex flex-col gap-0 justify-center">
               <p className='opacity-50 text-primary text-xs -mb-1 font-medium'>Economics Concepts</p>
               <h1 className='font-bold text-lg'>How to earn money</h1>
-              <p className='opacity-50 text-xs'>In this podcast you will learn <br/> how to earn money....</p>
+              <p className='opacity-50 text-xs'>In this podcast you will learn <br /> how to earn money....</p>
             </div>
             {/* <h3 className='font-medium text-xs'>With: <span className='text-primary'>Abdulrahman Nahhas</span></h3> */}
           </div>
