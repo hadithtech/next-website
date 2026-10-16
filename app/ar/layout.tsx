@@ -2,6 +2,7 @@ import { Inter, Cairo } from "next/font/google";
 import "../globals.css";
 import type { Metadata } from "next";
 import { getDirection } from "@/lib/i18n";
+import Navbar from "@/components/Navbar";
 
 const cairo = Cairo({
     subsets: ["arabic", "latin"],
@@ -27,7 +28,8 @@ export default function ArRootLayout({
     return (
         <html lang="ar" dir="rtl" className={cairo.variable}>
             <body className="font-sans">
-                {children}
+                <Navbar />
+                <main className="py-2">{children}</main>
             </body>
         </html>
     );
