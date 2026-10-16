@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import GuestPhoto from '@/components/GuestPhoto';
 
 interface PageProps {
     params: {
@@ -137,18 +138,16 @@ export default function PodcastEpisodePage({ params }: PageProps) {
                                         href={`/guests/${guest.slug}`}
                                         className="flex items-center gap-3 p-3 border rounded-lg hover:bg-primary/10 transition-colors"
                                     >
-                                        <img
-                                            src={guest.frontmatter.photo}
-                                            alt={guest.frontmatter.name}
-                                            className="w-12 h-12 rounded-full object-cover"
-                                        />
+                                        <GuestPhoto guest={guest} className="w-12 h-12 rounded-full object-cover" />
                                         <div>
                                             <p className="font-semibold hover:text-primary transition-colors">
                                                 {guest.frontmatter.name}
                                             </p>
-                                            <p className="text-sm text-muted-foreground">
-                                                @{guest.frontmatter.handle}
-                                            </p>
+                                            {guest.frontmatter.handle && (
+                                                <p className="text-sm text-muted-foreground">
+                                                    @{guest.frontmatter.handle}
+                                                </p>
+                                            )}
                                         </div>
                                     </Link>
                                 ))}

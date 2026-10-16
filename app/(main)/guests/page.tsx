@@ -1,6 +1,7 @@
 import { getAllGuests } from '@/lib/guests';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import GuestPhoto from '@/components/GuestPhoto';
 
 export const metadata: Metadata = {
     title: 'Guests | Hadith Tech',
@@ -39,11 +40,7 @@ export default function GuestsPage() {
                                 <article className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
                                     {/* Guest Photo */}
                                     <div className="aspect-square bg-muted overflow-hidden">
-                                        <img
-                                            src={guest.frontmatter.photo}
-                                            alt={guest.frontmatter.name}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
+                                        <GuestPhoto guest={guest} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                     </div>
 
                                     {/* Content */}
@@ -51,9 +48,11 @@ export default function GuestsPage() {
                                         <h2 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">
                                             {guest.frontmatter.name}
                                         </h2>
-                                        <p className="text-sm text-muted-foreground mb-3">
-                                            @{guest.frontmatter.handle}
-                                        </p>
+                                        {guest.frontmatter.handle && (
+                                            <p className="text-sm text-muted-foreground mb-3">
+                                                @{guest.frontmatter.handle}
+                                            </p>
+                                        )}
 
                                         <p className="text-muted-foreground text-sm flex-1 line-clamp-3 mb-4">
                                             {guest.frontmatter.shortBio}

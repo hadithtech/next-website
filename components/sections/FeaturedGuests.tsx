@@ -2,6 +2,7 @@ import React from "react";
 import { getFeaturedGuests } from "@/lib/guests";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import GuestPhoto from "@/components/GuestPhoto";
 
 const copy = {
   en: {
@@ -35,11 +36,7 @@ const FeaturedGuests = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
             href={`${t.base}/guests/${guest.slug}`}
             className="border p-5 rounded-2xl hover:shadow-xl transition-all hover:-translate-y-1 group bg-background flex items-center gap-4"
           >
-            <img
-              src={guest.frontmatter.photo}
-              alt={guest.frontmatter.name}
-              className="w-16 h-16 rounded-full object-cover bg-muted flex-shrink-0"
-            />
+            <GuestPhoto guest={guest} className="w-16 h-16 rounded-full object-cover bg-muted flex-shrink-0" />
             <div className="min-w-0">
               <h3 className="font-bold text-lg group-hover:text-primary transition-colors truncate">
                 {guest.frontmatter.name}

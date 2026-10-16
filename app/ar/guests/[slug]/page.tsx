@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import GuestPhoto from '@/components/GuestPhoto';
 
 interface PageProps {
     params: {
@@ -75,11 +76,7 @@ export default function GuestDetailPageAr({ params }: PageProps) {
                         <div className="flex flex-col md:flex-row-reverse gap-8 items-start mb-8">
                             {/* Photo */}
                             <div className="w-full md:w-48 flex-shrink-0">
-                                <img
-                                    src={guest.frontmatter.photo}
-                                    alt={guest.frontmatter.name}
-                                    className="w-full h-auto rounded-lg object-cover aspect-square"
-                                />
+                                <GuestPhoto guest={guest} className="w-full h-auto rounded-lg object-cover aspect-square" />
                             </div>
 
                             {/* Info */}
@@ -87,9 +84,11 @@ export default function GuestDetailPageAr({ params }: PageProps) {
                                 <h1 className="text-4xl md:text-5xl font-bold mb-2">
                                     {guest.frontmatter.name}
                                 </h1>
-                                <p className="text-lg text-muted-foreground mb-4">
-                                    @{guest.frontmatter.handle}
-                                </p>
+                                {guest.frontmatter.handle && (
+                                    <p className="text-lg text-muted-foreground mb-4">
+                                        @{guest.frontmatter.handle}
+                                    </p>
+                                )}
 
                                 <p className="text-lg mb-6">
                                     {guest.frontmatter.shortBio}
