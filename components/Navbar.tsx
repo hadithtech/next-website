@@ -66,10 +66,10 @@ const Navbar = () => {
           {isArabic ? 'البودكاست' : 'Podcasts'}
         </Link>
         <Link
-          href={localePrefix + "/contact"}
+          href={localePrefix + "/guests"}
           className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-xl"
         >
-          {isArabic ? 'اتصل بنا' : 'Contact'}
+          {isArabic ? 'الضيوف' : 'Guests'}
         </Link>
       </div>
       <div className="hidden md:flex gap-2 items-center">
@@ -126,14 +126,14 @@ const Navbar = () => {
                 {isArabic ? 'البودكاست' : 'Podcasts'}
               </Link>
               <Link
-                href={localePrefix + "/contact"}
+                href={localePrefix + "/guests"}
                 onClick={() => setOpen(false)}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "w-full flex items-center justify-center"
                 )}
               >
-                {isArabic ? 'اتصل بنا' : 'Contact'}
+                {isArabic ? 'الضيوف' : 'Guests'}
               </Link>
               <Link
                 href={toggleLang}

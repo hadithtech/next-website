@@ -38,6 +38,7 @@ const HomeHero = () => {
         pb-6 font-bold mx-auto text-center
       ">
         Tech Conversations About
+        <br></br>
         <span className="
           font-bold lg:text-5xl md:text-4xl sm:text-3xl text-2xl border-primary border-dotted sm:border-4 border-2 px-3 sm:px-5 mx-2
           rounded-full uppercase bg-primary/10 pt-1 pb-[2px] lg:px-5 lg:py-1 relative inline-block

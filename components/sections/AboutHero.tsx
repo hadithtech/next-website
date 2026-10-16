@@ -13,7 +13,6 @@ const AboutHero = () => {
         <p className="text-xl">Fireside tech podcast with technology leaders. This podcast hosts people to talk about their experience, most valuable work for them and their vision</p>
         <div className="flex gap-2">
           <Button>Episodes</Button>
-          <Button variant={"outline"}>Contact us</Button>
         </div>
       </div>
       <div className="Box1 bg-blue-300  rounded-3xl overflow-hidden">

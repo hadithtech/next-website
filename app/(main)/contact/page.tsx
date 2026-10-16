@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ContactWidget from "@/components/ContactWidget";
 import React from "react";
 import type { Metadata } from "next";
@@ -12,6 +13,9 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
+  // Contact page is hidden for now; remove this line to re-enable it.
+  notFound();
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center gap-0 mb-6">

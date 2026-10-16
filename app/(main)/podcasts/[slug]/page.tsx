@@ -1,4 +1,5 @@
 import { getEpisodeBySlug, getAllEpisodes } from '@/lib/episodes';
+import { getGuestsByEpisodeSlug } from '@/lib/guests';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function PodcastEpisodePage({ params }: PageProps) {
     const episode = getEpisodeBySlug(params.slug, 'en');
+    const guests = getGuestsByEpisodeSlug(params.slug, 'en');
 
     if (!episode) {
         notFound();
@@ -123,15 +125,36 @@ export default function PodcastEpisodePage({ params }: PageProps) {
                     </div>
 
                     {/* Guest Info */}
-                    <div className="mt-12 p-6 bg-secondary rounded-lg">
-                        <h3 className="text-lg font-semibold mb-2">Guest</h3>
-                        <p className="text-muted-foreground">
-                            {episode.frontmatter.guest}
-                            {episode.frontmatter.guestHandle && (
-                                <span className="ml-2">@{episode.frontmatter.guestHandle}</span>
-                            )}
-                        </p>
-                    </div>
+                    {guests.length > 0 && (
+                        <div className="mt-12 p-6 bg-secondary rounded-lg">
+                            <h3 className="text-lg font-semibold mb-4">
+                                Guest{guests.length > 1 ? 's' : ''}
+                            </h3>
+                            <div className="space-y-3">
+                                {guests.map((guest) => (
+                                    <Link
+                                        key={guest.slug}
+                                        href={`/guests/${guest.slug}`}
+                                        className="flex items-center gap-3 p-3 border rounded-lg hover:bg-primary/10 transition-colors"
+                                    >
+                                        <img
+                                            src={guest.frontmatter.photo}
+                                            alt={guest.frontmatter.name}
+                                            className="w-12 h-12 rounded-full object-cover"
+                                        />
+                                        <div>
+                                            <p className="font-semibold hover:text-primary transition-colors">
+                                                {guest.frontmatter.name}
+                                            </p>
+                                            <p className="text-sm text-muted-foreground">
+                                                @{guest.frontmatter.handle}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
