@@ -6,6 +6,7 @@ import { getEpisodeBySlug, getEpisodeSlugs, type Episode } from './episodes';
 export interface SocialLinks {
     twitter?: string;
     linkedin?: string;
+    facebook?: string;
     github?: string;
     website?: string;
 }

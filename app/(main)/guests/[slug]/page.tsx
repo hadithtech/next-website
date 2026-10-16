@@ -117,6 +117,16 @@ export default function GuestDetailPage({ params }: PageProps) {
                                                 <span>LinkedIn</span>
                                             </a>
                                         )}
+                                        {guest.frontmatter.socialLinks.facebook && (
+                                            <a
+                                                href={guest.frontmatter.socialLinks.facebook}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-secondary transition-colors"
+                                            >
+                                                <span>Facebook</span>
+                                            </a>
+                                        )}
                                         {guest.frontmatter.socialLinks.github && (
                                             <a
                                                 href={guest.frontmatter.socialLinks.github}
