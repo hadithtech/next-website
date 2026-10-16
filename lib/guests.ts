@@ -89,15 +89,6 @@ export function getAllGuests(locale: string = 'en'): Guest[] {
 }
 
 /**
- * Get featured guests for a specific locale
- */
-export function getFeaturedGuests(locale: string = 'en', limit?: number): Guest[] {
-    const allGuests = getAllGuests(locale);
-    // For now, return all guests as "featured" - can be extended with a featured field in frontmatter
-    return limit ? allGuests.slice(0, limit) : allGuests;
-}
-
-/**
  * Get episodes for a specific guest by their slug
  */
 export function getEpisodesForGuest(guestSlug: string, locale: string = 'en'): Episode[] {

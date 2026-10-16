@@ -4,8 +4,8 @@ import React from "react";
 import { buttonVariants } from "./ui/button";
 
 const copy = {
-  en: { brand: "Hadith Tech", logoAlt: "logo", home: "Home", about: "About", podcasts: "Podcasts", base: "" },
-  ar: { brand: "حديث التقنية", logoAlt: "شعار حديث التقنية", home: "الرئيسية", about: "من نحن", podcasts: "البودكاست", base: "/ar" },
+  en: { brand: "Hadith Tech", logoAlt: "logo", home: "Home", podcasts: "Podcasts", base: "" },
+  ar: { brand: "حديث التقنية", logoAlt: "شعار حديث التقنية", home: "الرئيسية", podcasts: "البودكاست", base: "/ar" },
 };
 
 const Footer = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
@@ -63,12 +63,6 @@ const Footer = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
           >
             {t.home}
-          </Link>
-          <Link
-            href={`${t.base}/about`}
-            className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
-          >
-            {t.about}
           </Link>
           <Link
             href={`${t.base}/podcasts`}

@@ -17,12 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
-            url: `${baseUrl}/about`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 0.8,
-        },
-        {
             url: `${baseUrl}/podcasts`,
             lastModified: new Date(),
             changeFrequency: 'weekly' as const,
@@ -49,12 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: 'weekly' as const,
             priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/ar/about`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
-            priority: 0.7,
         },
         {
             url: `${baseUrl}/ar/subscribe`,
