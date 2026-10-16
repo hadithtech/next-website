@@ -3,6 +3,7 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { getDirection } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const cairo = Cairo({
     subsets: ["arabic", "latin"],
@@ -30,6 +31,7 @@ export default function ArRootLayout({
             <body className="font-sans">
                 <Navbar />
                 <main className="py-2">{children}</main>
+                <Footer locale="ar" />
             </body>
         </html>
     );

@@ -3,7 +3,7 @@ import { Loader2 } from "lucide-react";
 import React from "react";
 import { InlineWidget } from "react-calendly";
 
-const ContactWidget = () => {
+const ContactWidget = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
   return (
     <section className="sm:container px-2 relative">
       <InlineWidget
@@ -25,7 +25,7 @@ const ContactWidget = () => {
       />
       <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold z-[-1] flex gap-2 items-center justify-center">
         <Loader2 className="animate-spin" size={35}/>
-        Loading
+        {locale === "ar" ? "جارٍ التحميل" : "Loading"}
       </p>
     </section>
   );

@@ -3,7 +3,13 @@ import Link from "next/link";
 import React from "react";
 import { buttonVariants } from "./ui/button";
 
-const Footer = () => {
+const copy = {
+  en: { brand: "Hadith Tech", logoAlt: "logo", home: "Home", about: "About", podcasts: "Podcasts", base: "" },
+  ar: { brand: "حديث التقنية", logoAlt: "شعار حديث التقنية", home: "الرئيسية", about: "من نحن", podcasts: "البودكاست", base: "/ar" },
+};
+
+const Footer = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
+  const t = copy[locale];
   return (
     <>
       <div _ngcontent-kty-c18="" className="w-[100vw-32px] px-4">
@@ -42,33 +48,33 @@ const Footer = () => {
       <footer className="py-3 md:py-5 flex flex-col md:flex-row items-center justify-between container">
         <Image
           src={"/logo.png"}
-          alt="logo"
+          alt={t.logoAlt}
           width={500}
           height={600}
           className="duration-200 h-44 mb-4 w-auto block md:hidden"
         />
         <h1 className="font-semibold hover:bg-accent py-2 px-4 rounded-3xl cursor-pointer hidden items-center justify-center gap-1 md:flex">
-          Hadith Tech
+          {t.brand}
         </h1>
 
         <div className="flex flex-wrap flex-row gap-1 items-center justify-center">
           <Link
-            href="/"
+            href={`${t.base}/`}
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
           >
-            Home
+            {t.home}
           </Link>
           <Link
-            href="/about"
+            href={`${t.base}/about`}
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
           >
-            About
+            {t.about}
           </Link>
           <Link
-            href="/podcasts"
+            href={`${t.base}/podcasts`}
             className="opacity-75 hover:opacity-100 hover:bg-accent px-4 rounded-3xl py-2 duration-500 active:rounded-md"
           >
-            Podcasts
+            {t.podcasts}
           </Link>
         </div>
       </footer>

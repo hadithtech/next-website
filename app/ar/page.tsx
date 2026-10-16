@@ -6,10 +6,10 @@ import FeaturedGuests from '@/components/sections/FeaturedGuests'
 export default function HomeAr() {
   return (
     <div className='min-h-[calc(100vh-88px-88px-16px)] flex items-center justify-center flex-col gap-20'>
-      <HomeHero />
-      <Episodes />
+      <HomeHero locale="ar" />
+      <Episodes locale="ar" />
       <FeaturedGuests locale="ar" />
-      <Testimonials />
+      <Testimonials locale="ar" />
     </div>
   )
 }

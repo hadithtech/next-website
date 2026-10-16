@@ -7,7 +7,40 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 
-let categories = ["Technology", "AI", "Open Source"];
+const copy = {
+  en: {
+    heading: "Tech Conversations About",
+    categories: ["Technology", "AI", "Open Source"],
+    subtitle: "Join technology leaders and innovators discussing the future of tech, from machine learning to open source",
+    browse: "Browse Episodes",
+    subscribe: "Subscribe Now",
+    arabicEpisodes: "Arabic Episodes",
+    arabicEpisodesText: "Empowering the MENA region with discussions on open-source, technology, and AI.",
+    englishEpisodes: "English Episodes",
+    englishEpisodesText: "Expert conversations covering cybersecurity, machine learning, and tech innovation.",
+    host: "Host",
+    hostName: "Abdurrahman Rajab",
+    hostBio: "Tech leader, open source advocate, and speaker at GitHub Universe",
+    logoAlt: "Hadith Tech Logo",
+    base: "",
+  },
+  ar: {
+    heading: "حوارات تقنية حول",
+    categories: ["التقنية", "الذكاء الاصطناعي", "المصادر المفتوحة"],
+    subtitle: "انضم إلى قادة التقنية والمبتكرين في نقاشات حول مستقبل التقنية، من التعلم الآلي إلى المصادر المفتوحة",
+    browse: "تصفّح الحلقات",
+    subscribe: "اشترك الآن",
+    arabicEpisodes: "حلقة باللغة العربية",
+    arabicEpisodesText: "نُمكّن منطقة الشرق الأوسط وشمال أفريقيا بنقاشات حول المصادر المفتوحة والتقنية والذكاء الاصطناعي.",
+    englishEpisodes: "حلقة باللغة الإنجليزية",
+    englishEpisodesText: "حوارات مع خبراء تغطي الأمن السيبراني والتعلم الآلي والابتكار التقني.",
+    host: "المضيف",
+    hostName: "عبدالرحمن رجب",
+    hostBio: "قائد تقني، ومناصر للمصادر المفتوحة، ومتحدث في GitHub Universe",
+    logoAlt: "شعار حديث التقنية",
+    base: "/ar",
+  },
+};
 
 const Podcast__Card = ({ className, children }: { className?: string, children: React.ReactNode }) => {
   return (
@@ -17,7 +50,8 @@ const Podcast__Card = ({ className, children }: { className?: string, children: 
   )
 }
 
-const HomeHero = () => {
+const HomeHero = ({ locale = "en" }: { locale?: "en" | "ar" }) => {
+  const t = copy[locale];
   const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -37,24 +71,24 @@ const HomeHero = () => {
         text-3xl max-w-full leading-[40px]
         pb-6 font-bold mx-auto text-center
       ">
-        Tech Conversations About
+        {t.heading}
         <br></br>
         <span className="
           font-bold lg:text-5xl md:text-4xl sm:text-3xl text-2xl border-primary border-dotted sm:border-4 border-2 px-3 sm:px-5 mx-2
           rounded-full uppercase bg-primary/10 pt-1 pb-[2px] lg:px-5 lg:py-1 relative inline-block
         ">
-          <TextTransition springConfig={presets.gentle} className='!inline-flex text-primary'>{categories[index % categories.length]}</TextTransition>
+          <TextTransition springConfig={presets.gentle} className='!inline-flex text-primary'>{t.categories[index % t.categories.length]}</TextTransition>
         </span>
       </h1>
       <p className="text-center text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-        Join technology leaders and innovators discussing the future of tech, from machine learning to open source
+        {t.subtitle}
       </p>
       <div className="flex gap-4 justify-center mb-12">
-        <Link href="/podcasts" className={cn(buttonVariants({ size: "lg" }))}>
-          Browse Episodes
+        <Link href={`${t.base}/podcasts`} className={cn(buttonVariants({ size: "lg" }))}>
+          {t.browse}
         </Link>
-        <Link href="/subscribe" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
-          Subscribe Now
+        <Link href={`${t.base}/subscribe`} className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+          {t.subscribe}
         </Link>
       </div>
       <div className="flex md:flex-row flex-col-reverse gap-4 relative items-center">
@@ -62,36 +96,36 @@ const HomeHero = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-baseline gap-2">
               <h1 className="font-bold text-5xl text-primary">24+</h1>
-              <h2 className="font-semibold text-xl">Arabic Episodes</h2>
+              <h2 className="font-semibold text-xl">{t.arabicEpisodes}</h2>
             </div>
             <p className="font-normal text-muted-foreground">
-              Empowering the MENA region with discussions on open-source, technology, and AI.
+              {t.arabicEpisodesText}
             </p>
           </div>
           <div className="flex flex-col gap-2">
             <div className="flex items-baseline gap-2">
               <h1 className="font-bold text-5xl text-primary">12+</h1>
-              <h2 className="font-semibold text-xl">English Episodes</h2>
+              <h2 className="font-semibold text-xl">{t.englishEpisodes}</h2>
             </div>
             <p className="font-normal text-muted-foreground">
-              Expert conversations covering cybersecurity, machine learning, and tech innovation.
+              {t.englishEpisodesText}
             </p>
           </div>
         </div>
         <div className="flex-1 lg:mt-auto xl:border-b-2 border-primary relative">
-          <Image width={800} height={800} alt='image' src={"/Abdulrahman.png"} className='w-auto xl:h-auto lg:h-[500px] md:max-h-none max-h-[400px] mx-auto' />
+          <Image width={800} height={800} alt={t.hostName} src={"/Abdulrahman.png"} className='w-auto xl:h-auto lg:h-[500px] md:max-h-none max-h-[400px] mx-auto' />
           <Podcast__Card className='relative -top-5 md:hidden flex w-[100%] bg-background/90 max-w-[400px]' >
             <div className="flex flex-col gap-1 justify-center">
-              <p className='text-primary sm:text-xs text-[10px] font-semibold uppercase tracking-wide'>Host</p>
-              <h1 className='font-bold sm:text-lg text-base'>Abdurrahman Rajab</h1>
+              <p className='text-primary sm:text-xs text-[10px] font-semibold uppercase tracking-wide'>{t.host}</p>
+              <h1 className='font-bold sm:text-lg text-base'>{t.hostName}</h1>
               <p className='text-muted-foreground sm:text-sm text-xs'>
-                Tech leader, open source advocate, and speaker at GitHub Universe
+                {t.hostBio}
               </p>
             </div>
           </Podcast__Card>
         </div>
         <div className="xl:block hidden lg:mt-10 w-[350px]">
-          <Image width={800} height={800} alt='Hadith Tech Logo' src={"/logo.png"} className='w-2/3 h-auto mx-auto' />
+          <Image width={800} height={800} alt={t.logoAlt} src={"/logo.png"} className='w-2/3 h-auto mx-auto' />
         </div>
       </div>
     </section>
