@@ -20,6 +20,7 @@ export interface GuestFrontmatter {
     photo: string;
     socialLinks?: SocialLinks;
     episodeSlugs: string[];
+    featured?: boolean;
 }
 
 export interface Guest {

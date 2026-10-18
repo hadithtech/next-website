@@ -1,4 +1,4 @@
-import { getAllGuests } from '@/lib/guests';
+import { getAllGuests, type Guest } from '@/lib/guests';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import GuestPhoto from '@/components/GuestPhoto';
@@ -15,6 +15,50 @@ export const metadata: Metadata = {
 export default function GuestsPage() {
     const guests = getAllGuests('en');
 
+    const featuredGuests = guests.filter((guest) => guest.frontmatter.featured);
+    const otherGuests = guests.filter((guest) => !guest.frontmatter.featured);
+
+    const renderGuestCard = (guest: Guest) => (
+        <Link
+            key={guest.slug}
+            href={`/guests/${guest.slug}`}
+            className="group"
+        >
+            <article className={`border rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col ${guest.frontmatter.featured ? 'border-primary' : ''}`}>
+                {/* Guest Photo */}
+                <div className="relative aspect-square bg-muted overflow-hidden">
+                    {guest.frontmatter.featured && (
+                        <span className="absolute top-3 start-3 z-10 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                            Featured
+                        </span>
+                    )}
+                    <GuestPhoto guest={guest} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+
+                {/* Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                    <h2 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">
+                        {guest.frontmatter.name}
+                    </h2>
+                    {guest.frontmatter.handle && (
+                        <p className="text-sm text-muted-foreground mb-3">
+                            @{guest.frontmatter.handle}
+                        </p>
+                    )}
+
+                    <p className="text-muted-foreground text-sm flex-1 line-clamp-3 mb-4">
+                        {guest.frontmatter.shortBio}
+                    </p>
+
+                    {/* Episode Count */}
+                    <div className="text-xs text-muted-foreground pt-4 border-t">
+                        {guest.frontmatter.episodeSlugs.length} episode{guest.frontmatter.episodeSlugs.length !== 1 ? 's' : ''}
+                    </div>
+                </div>
+            </article>
+        </Link>
+    );
+
     return (
         <div className="min-h-screen py-20">
             <div className="container mx-auto px-4">
@@ -27,45 +71,27 @@ export default function GuestsPage() {
                         <p className="text-lg text-muted-foreground">
                             Meet the brilliant minds who have shared their expertise and insights on Hadith Tech
                         </p>
+                        <p className="mt-4 text-sm font-medium text-muted-foreground">
+                            {guests.length} guest{guests.length !== 1 ? 's' : ''}
+                        </p>
                     </div>
 
-                    {/* Guests Grid */}
+                    {/* Featured Guests */}
+                    {featuredGuests.length > 0 && (
+                        <section className="mb-16">
+                            <h2 className="text-2xl md:text-3xl font-bold mb-6">Featured Guests</h2>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {featuredGuests.map(renderGuestCard)}
+                            </div>
+                        </section>
+                    )}
+
+                    {/* All Guests */}
+                    {otherGuests.length > 0 && (
+                        <h2 className="text-2xl md:text-3xl font-bold mb-6">All Guests</h2>
+                    )}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {guests.map((guest) => (
-                            <Link
-                                key={guest.slug}
-                                href={`/guests/${guest.slug}`}
-                                className="group"
-                            >
-                                <article className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                                    {/* Guest Photo */}
-                                    <div className="aspect-square bg-muted overflow-hidden">
-                                        <GuestPhoto guest={guest} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-6 flex-1 flex flex-col">
-                                        <h2 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">
-                                            {guest.frontmatter.name}
-                                        </h2>
-                                        {guest.frontmatter.handle && (
-                                            <p className="text-sm text-muted-foreground mb-3">
-                                                @{guest.frontmatter.handle}
-                                            </p>
-                                        )}
-
-                                        <p className="text-muted-foreground text-sm flex-1 line-clamp-3 mb-4">
-                                            {guest.frontmatter.shortBio}
-                                        </p>
-
-                                        {/* Episode Count */}
-                                        <div className="text-xs text-muted-foreground pt-4 border-t">
-                                            {guest.frontmatter.episodeSlugs.length} episode{guest.frontmatter.episodeSlugs.length !== 1 ? 's' : ''}
-                                        </div>
-                                    </div>
-                                </article>
-                            </Link>
-                        ))}
+                        {otherGuests.map(renderGuestCard)}
                     </div>
 
                     {/* Empty State */}
